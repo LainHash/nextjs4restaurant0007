@@ -1,0 +1,50 @@
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+.material-symbols-outlined.fill {
+    font-variation-settings: 'FILL' 1;
+}
+
+.glass-overlay {
+    background: linear-gradient(to bottom, rgba(251, 249, 248, 0.1) 0%, rgba(251, 249, 248, 0.9) 100%);
+}
+
+.glass-panel {
+    background: rgba(251, 249, 248, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(196, 199, 199, 0.2);
+}
+
+.text-balance {
+    text-wrap: balance;
+}
+
+/* Smooth tab transitions */
+.tab-content {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
+.tab-content.active {
+    display: block;
+    opacity: 1;
+}
+
+.tab-btn.active {
+    color: #775a19; /* secondary */
+    border-bottom: 2px solid #775a19;
+    font-weight: 600;
+}
+
+.input-minimal { border-bottom: 1px solid #c4c7c7; }
+.input-minimal:focus { border-bottom-color: #775a19; outline: none; }
+
+/* Hide scrollbar for clean look in bento components */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
