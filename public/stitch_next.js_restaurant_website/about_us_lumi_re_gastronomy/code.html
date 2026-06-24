@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About Lumière Gastronomy</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&amp;family=Hanken+Grotesk:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#e4e2e2",
+                        "tertiary-fixed": "#e4e2dd",
+                        "on-secondary-fixed": "#261900",
+                        "outline-variant": "#c4c7c7",
+                        "secondary": "#775a19",
+                        "on-surface-variant": "#444748",
+                        "on-error": "#ffffff",
+                        "on-surface": "#1b1c1c",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#303030",
+                        "on-tertiary-container": "#848480",
+                        "on-tertiary-fixed": "#1b1c19",
+                        "on-primary-container": "#858383",
+                        "tertiary-container": "#1b1c19",
+                        "inverse-on-surface": "#f2f0f0",
+                        "surface-container-low": "#f5f3f3",
+                        "primary": "#000000",
+                        "error": "#ba1a1a",
+                        "tertiary": "#000000",
+                        "on-background": "#1b1c1c",
+                        "surface-container-high": "#eae8e7",
+                        "outline": "#747878",
+                        "inverse-primary": "#c8c6c5",
+                        "on-primary-fixed-variant": "#474746",
+                        "on-tertiary-fixed-variant": "#474744",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#efeded",
+                        "secondary-container": "#fed488",
+                        "tertiary-fixed-dim": "#c8c6c2",
+                        "on-secondary-container": "#785a1a",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "secondary-fixed": "#ffdea5",
+                        "background": "#fbf9f8",
+                        "primary-fixed": "#e5e2e1",
+                        "secondary-fixed-dim": "#e9c176",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#dbd9d9",
+                        "surface-bright": "#fbf9f8",
+                        "primary-container": "#1c1b1b",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#fbf9f8",
+                        "on-secondary-fixed-variant": "#5d4201",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#5f5e5e",
+                        "on-primary-fixed": "#1c1b1b",
+                        "surface-container-highest": "#e4e2e2"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px",
+                        "section-gap": "120px",
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Libre Caslon Text"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "label-md": ["Hanken Grotesk"],
+                        "headline-md": ["Libre Caslon Text"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "display-lg": ["Libre Caslon Text"],
+                        "display-lg-mobile": ["Libre Caslon Text"],
+                        "body-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["24px", { "lineHeight": "32px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-md": ["32px", { "lineHeight": "40px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "display-lg": ["64px", { "lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+                        "display-lg-mobile": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-overlay {
+            background: linear-gradient(to bottom, rgba(251, 249, 248, 0.1) 0%, rgba(251, 249, 248, 0.9) 100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- Top Navigation -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
+<a class="font-headline-md text-headline-md text-primary tracking-tighter" href="#">LUMIÈRE</a>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-300 ease-out" href="#">Home</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-300 ease-out" href="#">Menu</a>
+<a class="font-body-md text-body-md text-secondary font-bold border-b-2 border-secondary opacity-80 scale-95 transition-all" href="#">About</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-300 ease-out" href="#">Contact</a>
+</div>
+<button class="hidden md:block bg-primary text-on-primary px-6 py-3 rounded font-label-md text-label-md hover:bg-surface-tint transition-colors duration-300">Book a Table</button>
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</div>
+</nav>
+<main class="pt-[88px]"> <!-- Offset for fixed nav -->
+<!-- Hero Header -->
+<section class="relative h-[716px] min-h-[500px] w-full flex items-end">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A stunning, high-resolution wide-angle photograph of an upscale restaurant interior at twilight. The space features modern minimalist architecture with subtle glassmorphism elements, high ceilings, and warm, low-key lighting casting elegant shadows. Tables are impeccably set with fine white linen and sparkling glassware. The color palette is sophisticated, dominated by deep charcoal tones, pristine whites, and warm gold accents from soft ambient lighting, evoking a sense of quiet, exclusive luxury." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDIEzZWn0KA4AeKbmmLy9rd3ATaZ4xi8txmNFHF4ZfgwHU4xUl91i2ugIyLSpu3FrVJw_mLSbp_N-7mmLq9-ijzIo20RQO1W55aVFZGjT4XyRLoG7YNIkEyziYlQotNxqIS5kl_hS6P0qPV17--E2PhKINem26RgYFM_Ct-8JD9uBrgmzujpdvbyUIvLxHF30qQrtOBlHJB6Yqj4LxBdwz0vta8PVnpYchVobUQj5WkWrK9NzdmsjY318ZqCcOgl-B8yF61zLNqdkI')"></div>
+<div class="absolute inset-0 bg-black/30"></div>
+<div class="absolute inset-0 glass-overlay"></div>
+<div class="relative z-10 px-margin-mobile md:px-margin-desktop pb-16 w-full max-w-container-max mx-auto">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-4">The Lumière Story</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">A dedication to culinary excellence, where modern precision meets timeless hospitality in an atmosphere of quiet luxury.</p>
+</div>
+</section>
+<!-- Our Story -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<div class="md:col-span-5 order-2 md:order-1">
+<img class="w-full h-auto aspect-[4/5] object-cover rounded border border-outline-variant/50" data-alt="A beautifully composed, minimalist still-life photograph of fresh, high-end culinary ingredients resting on a dark charcoal stone surface. The image features a single, perfect heirloom tomato, a sprig of delicate micro-herbs, and a subtle drizzle of golden olive oil. The lighting is soft and directional, highlighting the textures and rich colors against the moody, dark background. The overall aesthetic is refined, editorial, and deeply connected to nature and gastronomy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPtgNpeyt88FDJO4tex8_W2uIut28WQp5uoQRQPwvJHZBfLljfgJN02qyaE3w3VraYk196VpzaiVRfvcuuZjGGLphU9tetzmaijIa4bMq2UGB_7LkW7FGWqS0kZsXzt6gZAtl2WmdAShD5sRjub6CUeWgtdEYQEamaiiyMTVeQ6yriJE7lB5bPYITlQ0EP0NAxCsC9r-__YLi6HuEtD-WjtsKpX6luyzNmVk-PF9eHq_M3_jndSrRXGl3tllNNH0YgDh0vVGnmsIU"/>
+</div>
+<div class="md:col-span-6 md:col-start-7 order-1 md:order-2 mb-12 md:mb-0">
+<span class="font-label-md text-label-md text-secondary uppercase tracking-widest mb-4 block">Philosophy</span>
+<h2 class="font-headline-md text-headline-md text-primary mb-6">Crafting memories through thoughtful gastronomy.</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Founded on the belief that a meal is more than sustenance, Lumière was conceived as a sanctuary for the senses. We approach cooking with a reverence for ingredients, stripping away the unnecessary to reveal pure, profound flavors.</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Our space reflects our food: minimalist, intentional, and bathed in a gentle light that encourages diners to pause, connect, and savor the moment in an environment of understated elegance.</p>
+</div>
+</div>
+</section>
+<!-- Meet the Chef (Bento Style) -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-container-low">
+<div class="max-w-container-max mx-auto">
+<div class="text-center mb-16">
+<span class="font-label-md text-label-md text-secondary uppercase tracking-widest mb-4 block">Leadership</span>
+<h2 class="font-headline-md text-headline-md text-primary">Meet the Chef</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter auto-rows-[300px]">
+<!-- Large Photo Card -->
+<div class="md:col-span-2 md:row-span-2 relative rounded overflow-hidden border border-outline-variant/30 group">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A professional, editorial portrait of an executive chef in a pristine white chef's coat, standing confidently in a modern, gleaming stainless-steel kitchen. The chef has a focused, passionate expression. The lighting is crisp and dramatic, casting subtle shadows that highlight the chef's expertise and dedication. The color palette emphasizes the cool tones of the kitchen contrasted with the warm, human element of the chef, reflecting a high-end corporate yet artisanal culinary environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCasxYxkSItXc9RXV7FrOGDKtP3Rq9AjGhP7gnOZ7DKafbdjJNDPvwng44RiMQDoOjK6gz2444JJb-9s_chPxiyltapd05ol088opdTeq2N1wAUD1sSUME8P0cythzn1KcYmuU6g5AnTjcweM6k7TTvBMKHym8fmO-sHEpMMWt0qP_Cio0w9bOklS5-iUibZIEwdR7l6M1aGABt0y-9m9b9nV44l1kVEKdRkvS8ryGzJgp-F1VqrOY0MlRIjb2le7JOjjto1DY67Ig"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8">
+<h3 class="font-headline-sm text-headline-sm text-on-primary mb-2">Julian Vance</h3>
+<p class="font-label-md text-label-md text-secondary-fixed-dim">Executive Chef &amp; Visionary</p>
+</div>
+</div>
+<!-- Bio Text Card -->
+<div class="bg-surface p-8 rounded border border-outline-variant/30 flex flex-col justify-center">
+<span class="material-symbols-outlined text-secondary mb-4 text-3xl" data-icon="restaurant_menu">restaurant_menu</span>
+<p class="font-body-md text-body-md text-on-surface-variant italic">"Cooking is a dialogue between the earth and the table. My goal is to speak quietly so the ingredients can be heard."</p>
+</div>
+<!-- Details Card -->
+<div class="bg-primary text-on-primary p-8 rounded flex flex-col justify-between">
+<div>
+<h4 class="font-label-md text-label-md text-secondary-fixed mb-4 uppercase tracking-widest">Background</h4>
+<ul class="font-body-md text-body-md space-y-2 text-primary-fixed-dim">
+<li>• Trained in Lyon, France</li>
+<li>• 15 Years Michelin experience</li>
+<li>• Advocate for hyper-local sourcing</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Values -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="p-8 border border-outline-variant/30 rounded bg-surface hover:bg-surface-container-low transition-colors duration-300 text-center">
+<span class="material-symbols-outlined text-secondary text-4xl mb-6" data-icon="eco">eco</span>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-4">Sustainability</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">We prioritize ethical farming and zero-waste kitchen practices to ensure our footprint is as light as our touch.</p>
+</div>
+<div class="p-8 border border-outline-variant/30 rounded bg-surface hover:bg-surface-container-low transition-colors duration-300 text-center">
+<span class="material-symbols-outlined text-secondary text-4xl mb-6" data-icon="location_on">location_on</span>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-4">Local Provenance</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Sourcing exclusively from regional artisans and growers to support the community and guarantee peak freshness.</p>
+</div>
+<div class="p-8 border border-outline-variant/30 rounded bg-surface hover:bg-surface-container-low transition-colors duration-300 text-center">
+<span class="material-symbols-outlined text-secondary text-4xl mb-6" data-icon="diamond">diamond</span>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-4">Refined Craft</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Applying modern techniques with precision to classic flavor profiles, creating an experience of quiet luxury.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full bg-surface-container-lowest border-t border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop py-section-gap max-w-container-max mx-auto">
+<div>
+<span class="font-headline-sm text-headline-sm text-primary block mb-6">LUMIÈRE</span>
+<p class="font-label-md text-label-md text-on-surface-variant">© 2024 Lumière Gastronomy. All rights reserved.</p>
+</div>
+<div class="flex flex-col gap-4">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-all duration-300 focus:ring-1 focus:ring-secondary inline-block w-max" href="#">Location</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-all duration-300 focus:ring-1 focus:ring-secondary inline-block w-max" href="#">Opening Hours</a>
+</div>
+<div class="flex flex-col gap-4">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-all duration-300 focus:ring-1 focus:ring-secondary inline-block w-max" href="#">Contact</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-all duration-300 focus:ring-1 focus:ring-secondary inline-block w-max" href="#">Newsletter</a>
+</div>
+</div>
+</footer>
+</body></html>
