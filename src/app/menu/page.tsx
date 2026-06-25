@@ -1,10 +1,6 @@
 import Link from 'next/link';
-import { getProducts } from '@/src/services/catalog/productService';
-import { getCategories } from '@/src/services/catalog/categoryService';
-import ProductQuery from '@/src/common/models/query/catalog/ProductQuery';
-import PageQuery from '@/src/common/models/query/PageQuery';
-import CategoryResponse from '@/src/dtos/catalog/categories/CategoryResponse';
-import ProductResponse from '@/src/dtos/catalog/products/ProductResponse';
+import { useCategories } from '@/src/hooks/catalog/categories/useCategories';
+import { useProducts } from '@/src/hooks/catalog/products/useProducts';
 import ProductList from './components/ProductList';
 import CategoryTabs from './components/CategoryTabs';
 import Pagination from './components/Pagination';
@@ -16,33 +12,14 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ c
     const pageParam = resolvedParams?.page;
     const currentPage = pageParam ? parseInt(pageParam) : 1;
 
-    let categories: CategoryResponse[] = [];
-    let products: ProductResponse[] = [];
-    let totalPages: number = 1;
-
     // Fetch list of categories for the tabs
-    try {
-        const catQuery = new PageQuery("", 1, 50); // Get up to 50 categories
-        const catResponse = await getCategories(catQuery);
-        categories = catResponse?.data || [];
-    } catch (error) {
-        console.error("Failed to fetch categories:", error);
-    }
+    const categories = await useCategories(50);
 
     // Determine the active category (from URL or fallback to the first one)
     const activeCategory = categoryParam || (categories.length > 0 ? categories[0].name : "");
 
     // Fetch products ONLY for the active category
-    try {
-        if (activeCategory) {
-            const query = new ProductQuery("", activeCategory, currentPage, 5); // Lấy 5 món mỗi trang
-            const response = await getProducts(query);
-            products = response?.data || [];
-            totalPages = response?.totalPages || 1;
-        }
-    } catch (error) {
-        console.error("Failed to fetch products:", error);
-    }
+    const { products, totalPages } = await useProducts(activeCategory, currentPage, 5);
 
     return (
         <>
