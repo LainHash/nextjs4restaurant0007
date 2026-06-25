@@ -2,8 +2,11 @@ import Link from 'next/link';
 import { getProducts } from '@/src/services/catalog/productService';
 import { getCategories } from '@/src/services/catalog/categoryService';
 import ProductQuery from '@/src/common/models/query/catalog/ProductQuery';
+import PageQuery from '@/src/common/models/query/PageQuery';
 import CategoryResponse from '@/src/dtos/catalog/categories/CategoryResponse';
 import ProductResponse from '@/src/dtos/catalog/products/ProductResponse';
+import ProductList from './components/ProductList';
+import CategoryTabs from './components/CategoryTabs';
 
 export default async function Page({ searchParams }: { searchParams: Promise<{ category?: string }> }) {
     // Resolve searchParams promise (Required in Next.js 15+)
@@ -15,7 +18,8 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ c
 
     // Fetch list of categories for the tabs
     try {
-        const catResponse = await getCategories();
+        const catQuery = new PageQuery("", 1, 50); // Get up to 50 categories
+        const catResponse = await getCategories(catQuery);
         categories = catResponse?.data || [];
     } catch (error) {
         console.error("Failed to fetch categories:", error);
@@ -48,27 +52,9 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ c
                 </header>
                 
                 {/* Menu Tabs */}
-                {categories.length > 0 && (
-                    <div className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-12">
-                        <div className="flex overflow-x-auto no-scrollbar border-b border-outline-variant/30 pb-2 md:justify-center space-x-8 md:space-x-16">
-                            {categories.map((cat) => {
-                                const isActive = cat.name === activeCategory;
-                                return (
-                                    <Link 
-                                        key={cat.id} 
-                                        href={`/menu?category=${encodeURIComponent(cat.name)}`}
-                                        // Nếu tab đang active thì có style khác biệt (gạch dưới, text màu chính)
-                                        className={`tab-btn font-headline-sm text-headline-sm pb-2 whitespace-nowrap hover:text-secondary transition-colors ${
-                                            isActive ? 'active border-b-2 border-primary text-primary' : 'text-on-surface-variant'
-                                        }`}
-                                    >
-                                        {cat.name}
-                                    </Link>
-                                );
-                            })}
-                        </div>
-                    </div>
-                )}
+                <div className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+                    <CategoryTabs categories={categories} activeCategory={activeCategory} />
+                </div>
 
                 {/* Menu Content */}
                 <div className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
@@ -77,50 +63,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ c
                             Menu is currently unavailable.
                         </div>
                     ) : (
-                        <div className="tab-content active" id={activeCategory.toLowerCase().replace(/\s+/g, '-')}>
-                            <div className="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
-                                {/* Text Column */}
-                                <div className="lg:col-span-7 space-y-12">
-                                    {products.length === 0 ? (
-                                        <p className="text-on-surface-variant">No items found for this category.</p>
-                                    ) : (
-                                        products.map(product => (
-                                            <article key={product.id} className="group relative pb-8 border-b border-outline-variant/20 last:border-0">
-                                                <div className="flex justify-between items-baseline mb-2">
-                                                    <h3 className="font-headline-md text-headline-md text-primary">{product.name}</h3>
-                                                    <span className="font-headline-md text-headline-md text-secondary ml-4">${product.unitPrice}</span>
-                                                </div>
-                                                <p className="font-body-md text-body-md text-on-surface-variant mb-4 pr-8">
-                                                    {product.description}
-                                                </p>
-                                                {product.isMadeToOrder && (
-                                                    <div className="flex gap-2">
-                                                        <span className="inline-flex items-center px-3 py-1 rounded-full bg-secondary/10 text-secondary font-label-sm text-label-sm uppercase tracking-wider">
-                                                            Made to order
-                                                        </span>
-                                                    </div>
-                                                )}
-                                            </article>
-                                        ))
-                                    )}
-                                </div>
-                                {/* Image Column */}
-                                {products.length > 0 && (
-                                    <div className="hidden lg:block lg:col-span-5 lg:pl-12">
-                                        <div className="sticky top-32">
-                                            <div className="aspect-[4/5] rounded overflow-hidden relative">
-                                                <img 
-                                                    className="w-full h-full object-cover" 
-                                                    alt={activeCategory} 
-                                                    src={products[0]?.primaryImage?.url || 'https://via.placeholder.com/400x500?text=No+Image'} 
-                                                />
-                                                <div className="absolute inset-0 ring-1 ring-inset ring-primary/10 rounded"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
+                        <ProductList products={products} activeCategory={activeCategory} />
                     )}
                 </div>
                 
