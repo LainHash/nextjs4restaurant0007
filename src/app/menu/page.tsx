@@ -7,14 +7,18 @@ import CategoryResponse from '@/src/dtos/catalog/categories/CategoryResponse';
 import ProductResponse from '@/src/dtos/catalog/products/ProductResponse';
 import ProductList from './components/ProductList';
 import CategoryTabs from './components/CategoryTabs';
+import Pagination from './components/Pagination';
 
-export default async function Page({ searchParams }: { searchParams: Promise<{ category?: string }> }) {
+export default async function Page({ searchParams }: { searchParams: Promise<{ category?: string, page?: string }> }) {
     // Resolve searchParams promise (Required in Next.js 15+)
     const resolvedParams = await searchParams;
     const categoryParam = resolvedParams?.category;
+    const pageParam = resolvedParams?.page;
+    const currentPage = pageParam ? parseInt(pageParam) : 1;
 
     let categories: CategoryResponse[] = [];
     let products: ProductResponse[] = [];
+    let totalPages: number = 1;
 
     // Fetch list of categories for the tabs
     try {
@@ -31,9 +35,10 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ c
     // Fetch products ONLY for the active category
     try {
         if (activeCategory) {
-            const query = new ProductQuery("", activeCategory, 1, 50); // Lấy tối đa 50 món cho một danh mục
+            const query = new ProductQuery("", activeCategory, currentPage, 5); // Lấy 5 món mỗi trang
             const response = await getProducts(query);
             products = response?.data || [];
+            totalPages = response?.totalPages || 1;
         }
     } catch (error) {
         console.error("Failed to fetch products:", error);
@@ -63,7 +68,16 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ c
                             Menu is currently unavailable.
                         </div>
                     ) : (
-                        <ProductList products={products} activeCategory={activeCategory} />
+                        <>
+                            <ProductList products={products} activeCategory={activeCategory} />
+                            {products.length > 0 && (
+                                <Pagination 
+                                    currentPage={currentPage} 
+                                    totalPages={totalPages} 
+                                    category={activeCategory} 
+                                />
+                            )}
+                        </>
                     )}
                 </div>
                 
