@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login | LUMIÈRE Gastronomy</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&amp;family=Hanken+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline": "#747878",
+                    "surface-bright": "#fbf9f8",
+                    "on-surface": "#1b1c1c",
+                    "error": "#ba1a1a",
+                    "surface-dim": "#dbd9d9",
+                    "secondary": "#775a19",
+                    "tertiary": "#000000",
+                    "on-tertiary-container": "#848480",
+                    "surface-variant": "#e4e2e2",
+                    "surface-container-low": "#f5f3f3",
+                    "surface-container-high": "#eae8e7",
+                    "on-secondary-fixed": "#261900",
+                    "on-primary-fixed-variant": "#474746",
+                    "on-background": "#1b1c1c",
+                    "tertiary-container": "#1b1c19",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-on-surface": "#f2f0f0",
+                    "surface-container": "#efeded",
+                    "surface": "#fbf9f8",
+                    "secondary-fixed-dim": "#e9c176",
+                    "surface-tint": "#5f5e5e",
+                    "primary-container": "#1c1b1b",
+                    "on-tertiary-fixed": "#1b1c19",
+                    "inverse-surface": "#303030",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#e4e2dd",
+                    "outline-variant": "#c4c7c7",
+                    "background": "#fbf9f8",
+                    "primary": "#000000",
+                    "surface-container-highest": "#e4e2e2",
+                    "on-primary-fixed": "#1c1b1b",
+                    "primary-fixed-dim": "#c8c6c5",
+                    "on-primary-container": "#858383",
+                    "tertiary-fixed-dim": "#c8c6c2",
+                    "secondary-container": "#fed488",
+                    "secondary-fixed": "#ffdea5",
+                    "on-secondary-container": "#785a1a",
+                    "on-primary": "#ffffff",
+                    "on-surface-variant": "#444748",
+                    "on-secondary-fixed-variant": "#5d4201",
+                    "on-error-container": "#93000a",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed-variant": "#474744",
+                    "on-tertiary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#c8c6c5",
+                    "primary-fixed": "#e5e2e1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "container-max": "1280px",
+                    "gutter": "24px",
+                    "base": "8px",
+                    "margin-desktop": "64px",
+                    "section-gap": "120px"
+            },
+            "fontFamily": {
+                    "label-md": ["Hanken Grotesk"],
+                    "headline-sm": ["Libre Caslon Text"],
+                    "headline-md": ["Libre Caslon Text"],
+                    "label-sm": ["Hanken Grotesk"],
+                    "display-lg": ["Libre Caslon Text"],
+                    "display-lg-mobile": ["Libre Caslon Text"],
+                    "body-md": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "400"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                    "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Hanken Grotesk', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
+<a class="font-headline-md text-headline-md text-primary tracking-tighter" href="/">LUMIÈRE</a>
+<div class="hidden md:flex gap-8"></div>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-colors duration-300" href="/">
+            Back to home
+        </a>
+</div>
+</header>
+<main class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+<!-- Background Image Container -->
+<div class="absolute inset-0 z-0 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-[10s] scale-110 motion-safe:animate-[pulse_15s_infinite]" data-alt="A luxurious and moody high-end restaurant interior at dusk. Deep charcoal walls, soft warm amber pin-lights illuminating white linen tables, and golden brass accents on wine displays. The atmosphere is intimate and sophisticated, with blurred shadows of elegant diners in the distance. The lighting is low-key, emphasizing a quiet luxury aesthetic with deep contrast and rich textures." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAL6VFMjKMzP6zslM_6xC1T5qDOzxnxGlMGergavPOh06_Y9UpvuYvgB0q6BVnRczNUL1IpVoqcSdzBKZrCBtVibyCDhMI4UqfOE2JzaE4bgzV26nNiGW_cW92n2Y7ieB6f1UdICHvtzsOKz3xcl5IL9dxJS-hVHrEehzQDQNa_VwvRerHo_b5dalyuAiEfzTNF82vE2VvInV4HnDgOYLFocEzVqcb3lyCLoAzJyUGW5kCN5_go95Wzbva5SjB8cY3IkiK7CUukD0M')"></div>
+<!-- Overlay for legibility -->
+<div class="absolute inset-0 bg-primary/40 backdrop-blur-[2px]"></div>
+</div>
+<!-- Login Form Canvas -->
+<div class="relative z-10 w-full max-w-md px-margin-mobile">
+<div class="glass-panel p-10 md:p-12 rounded-lg border border-outline-variant/20 shadow-2xl">
+<div class="text-center mb-10">
+<h1 class="font-headline-md text-headline-md text-primary mb-2">Welcome Back</h1>
+<p class="font-body-md text-body-md text-on-surface-variant italic">A refined culinary experience awaits you.</p>
+</div>
+<form class="space-y-6" onsubmit="event.preventDefault();">
+<div class="space-y-1.5">
+<label class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant block" for="email">Email</label>
+<input class="w-full bg-transparent border-b border-outline-variant focus:border-secondary outline-none py-3 px-1 transition-all duration-300 font-body-md text-body-md placeholder:text-outline-variant/50 focus:ring-0" id="email" placeholder="username@email.com" type="email"/>
+</div>
+<div class="space-y-1.5">
+<div class="flex justify-between items-center">
+<label class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant block" for="password">PASSWORD</label>
+<a class="font-label-sm text-label-sm text-secondary hover:underline transition-all" href="#">Forgot password?</a>
+</div>
+<div class="relative">
+<input class="w-full bg-transparent border-b border-outline-variant focus:border-secondary outline-none py-3 px-1 transition-all duration-300 font-body-md text-body-md placeholder:text-outline-variant/50 focus:ring-0" id="password" placeholder="••••••••" type="password"/>
+<button class="absolute right-2 top-3 text-on-surface-variant/60 hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</div>
+<div class="pt-4">
+<button class="w-full bg-primary text-on-primary font-label-md text-label-md py-4 rounded-lg hover:bg-primary/90 active:scale-[0.98] transition-all duration-300 shadow-lg shadow-primary/10" type="submit">
+                        LOG IN
+                    </button>
+</div>
+</form>
+<div class="mt-10 pt-8 border-t border-outline-variant/20 text-center">
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Don't have an account? 
+                    <a class="text-secondary font-bold hover:underline transition-all ml-1" href="#">Sign up now</a>
+</p>
+</div>
+</div>
+<!-- Decorative Element -->
+<div class="mt-8 flex justify-center gap-4 opacity-40">
+<div class="h-[1px] w-12 bg-outline-variant self-center"></div>
+<span class="font-label-sm text-label-sm text-on-surface italic">Lumière Gastronomy</span>
+<div class="h-[1px] w-12 bg-outline-variant self-center"></div>
+</div>
+</div>
+</main>
+<!-- Footer Component -->
+<footer class="w-full bg-surface-container-lowest border-t border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop py-16 max-w-container-max mx-auto">
+<div class="md:col-span-2">
+<h2 class="font-headline-sm text-headline-sm text-primary mb-4">LUMIÈRE</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs">
+                Creating unforgettable moments through sophistication and heart in every dish.
+            </p>
+</div>
+<div class="flex flex-col gap-3">
+<span class="font-label-md text-label-md text-primary mb-2">Explore</span>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-all" href="#">Location</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-all" href="#">Opening Hours</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-all" href="#">Contact</a>
+</div>
+<div class="flex flex-col gap-3">
+<span class="font-label-md text-label-md text-primary mb-2">Information</span>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-all" href="#">Privacy Policy</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-all" href="#">Terms of Service</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-all" href="#">Newsletter</a>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pb-8">
+<p class="font-label-md text-label-md text-on-surface-variant/60 text-center md:text-left">
+            © 2024 Lumière Gastronomy. All rights reserved.
+        </p>
+</div>
+</footer>
+<script>
+    // Micro-interaction for input floating focus effect
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(input => {
+        input.addEventListener('focus', () => {
+            input.previousElementSibling?.classList.add('text-secondary');
+        });
+        input.addEventListener('blur', () => {
+            input.previousElementSibling?.classList.remove('text-secondary');
+        });
+    });
+
+    // Simple visibility toggle for password
+    const toggleBtn = document.querySelector('button[type="button"]');
+    const passwordInput = document.getElementById('password');
+    if(toggleBtn && passwordInput) {
+        toggleBtn.addEventListener('click', () => {
+            const isPassword = passwordInput.type === 'password';
+            passwordInput.type = isPassword ? 'text' : 'password';
+            toggleBtn.querySelector('span').textContent = isPassword ? 'visibility_off' : 'visibility';
+        });
+    }
+</script>
+</body></html>

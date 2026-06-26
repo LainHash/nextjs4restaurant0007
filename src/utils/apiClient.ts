@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 const apiClient = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_API_URL,
+    baseURL: "",
     headers: {
         'Content-Type': 'application/json',
     },
@@ -12,10 +12,12 @@ const apiClient = axios.create({
 apiClient.interceptors.request.use(
     (config) => {
         // You can add authorization tokens here if needed
-        // const token = localStorage.getItem('token');
-        // if (token) {
-        //     config.headers.Authorization = `Bearer ${token}`;
-        // }
+        if (typeof window !== "undefined") {
+            const token = localStorage.getItem('token');
+            if (token) {
+                config.headers.Authorization = `Bearer ${token}`;
+            }
+        }
         return config;
     },
     (error) => {
