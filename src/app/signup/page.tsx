@@ -1,33 +1,17 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useSignup } from "../../hooks/auth/useSignup";
 
 export default function SignupPage() {
-  const router = useRouter();
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (password !== confirmPassword) {
-      alert("Passwords do not match. Please check again.");
-      return;
-    }
-    
-    setIsProcessing(true);
-    setTimeout(() => {
-      setIsSuccess(true);
-      setIsProcessing(false);
-      // Navigate to email verification step
-      setTimeout(() => {
-        router.push("/signup/verify");
-      }, 500);
-    }, 1500);
-  };
+  const {
+    userName, setUserName,
+    email, setEmail,
+    password, setPassword,
+    confirmPassword, setConfirmPassword,
+    isProcessing, isSuccess,
+    handleSignup
+  } = useSignup();
 
   return (
     <main className="min-h-screen pt-20 flex flex-col items-center justify-center relative overflow-hidden">
@@ -42,7 +26,7 @@ export default function SignupPage() {
         ></div>
         <div className="absolute inset-0 bg-black/20"></div>
       </div>
-      
+
       {/* Registration Container */}
       <section className="relative z-10 w-full max-w-xl px-margin-mobile my-12">
         <div className="bg-[#fbf9f8]/85 backdrop-blur-md p-8 md:p-12 shadow-2xl border border-white/20 rounded-lg">
@@ -50,18 +34,20 @@ export default function SignupPage() {
             <h1 className="font-headline-md text-headline-md text-primary mb-2">Join LUMIÈRE</h1>
             <p className="font-body-md text-on-surface-variant">Begin your journey of culinary excellence</p>
           </div>
-          <form className="space-y-6" onSubmit={handleSubmit}>
-            {/* Full Name */}
+          <form className="space-y-6" onSubmit={handleSignup}>
+            {/* User Name */}
             <div className="relative group">
-              <label className="block font-label-sm text-label-sm text-on-surface-variant uppercase mb-1 group-focus-within:text-secondary transition-colors" htmlFor="full_name">
-                FULL NAME
+              <label className="block font-label-sm text-label-sm text-on-surface-variant uppercase mb-1 group-focus-within:text-secondary transition-colors" htmlFor="user_name">
+                USER NAME
               </label>
               <input
                 className="w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 font-body-md text-body-md focus:ring-0 focus:border-secondary transition-all duration-300 outline-none"
-                id="full_name"
-                placeholder="John Doe"
+                id="user_name"
+                placeholder="johndoe"
                 required
                 type="text"
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
               />
             </div>
             {/* Email */}
@@ -75,6 +61,8 @@ export default function SignupPage() {
                 placeholder="email@example.com"
                 required
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -128,9 +116,8 @@ export default function SignupPage() {
             {/* Primary Action */}
             <div className="pt-4">
               <button
-                className={`w-full py-4 font-label-md text-label-md uppercase tracking-[0.2em] transition-all duration-500 ease-in-out transform active:scale-[0.98] ${
-                  isSuccess ? "bg-green-800 text-white" : "bg-primary text-on-primary hover:bg-secondary"
-                }`}
+                className={`w-full py-4 font-label-md text-label-md uppercase tracking-[0.2em] transition-all duration-500 ease-in-out transform active:scale-[0.98] ${isSuccess ? "bg-green-800 text-white" : "bg-primary text-on-primary hover:bg-secondary"
+                  }`}
                 type="submit"
                 disabled={isProcessing || isSuccess}
               >

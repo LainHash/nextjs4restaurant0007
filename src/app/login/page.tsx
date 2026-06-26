@@ -1,10 +1,15 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
+import { useLogin } from "../../hooks/auth/useLogin";
 
 export default function LoginPage() {
-  const [showPassword, setShowPassword] = useState(false);
+  const {
+    email, setEmail,
+    password, setPassword,
+    showPassword, setShowPassword,
+    isProcessing, handleLogin
+  } = useLogin();
 
   return (
     <main className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
@@ -20,7 +25,7 @@ export default function LoginPage() {
         {/* Overlay for legibility */}
         <div className="absolute inset-0 bg-primary/40 backdrop-blur-[2px]"></div>
       </div>
-      
+
       {/* Login Form Canvas */}
       <div className="relative z-10 w-full max-w-md px-margin-mobile">
         <div className="bg-white/85 backdrop-blur-md p-10 md:p-12 rounded-lg border border-outline-variant/20 shadow-2xl">
@@ -28,7 +33,7 @@ export default function LoginPage() {
             <h1 className="font-headline-md text-headline-md text-primary mb-2">Welcome Back</h1>
             <p className="font-body-md text-body-md text-on-surface-variant italic">A refined culinary experience awaits you.</p>
           </div>
-          <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+          <form className="space-y-6" onSubmit={handleLogin}>
             <div className="space-y-1.5 group">
               <label className="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant block group-focus-within:text-secondary transition-colors" htmlFor="email">
                 Email
@@ -39,6 +44,8 @@ export default function LoginPage() {
                 placeholder="username@email.com"
                 type="email"
                 required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="space-y-1.5 group">
@@ -57,6 +64,8 @@ export default function LoginPage() {
                   placeholder="••••••••"
                   type={showPassword ? "text" : "password"}
                   required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <button
                   className="absolute right-2 top-3 text-on-surface-variant/60 hover:text-primary transition-colors"
@@ -71,10 +80,11 @@ export default function LoginPage() {
             </div>
             <div className="pt-4">
               <button
-                className="w-full bg-primary text-on-primary font-label-md text-label-md py-4 rounded-lg hover:bg-primary/90 active:scale-[0.98] transition-all duration-300 shadow-lg shadow-primary/10"
+                className="w-full bg-primary text-on-primary font-label-md text-label-md py-4 rounded-lg hover:bg-primary/90 active:scale-[0.98] transition-all duration-300 shadow-lg shadow-primary/10 disabled:bg-gray-400"
                 type="submit"
+                disabled={isProcessing}
               >
-                LOG IN
+                {isProcessing ? "LOGGING IN..." : "LOG IN"}
               </button>
             </div>
           </form>

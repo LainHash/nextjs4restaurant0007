@@ -1,50 +1,13 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useVerifyEmail } from "../../../hooks/auth/useVerifyEmail";
 
 export default function VerifyEmailPage() {
-  const router = useRouter();
-  const [otp, setOtp] = useState(["", "", "", "", "", ""]);
-  const [timeRemaining, setTimeRemaining] = useState(59);
-  const [canResend, setCanResend] = useState(false);
-  const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
-
-  useEffect(() => {
-    if (timeRemaining > 0) {
-      const timerId = setTimeout(() => setTimeRemaining(timeRemaining - 1), 1000);
-      return () => clearTimeout(timerId);
-    } else {
-      setCanResend(true);
-    }
-  }, [timeRemaining]);
-
-  const handleChange = (index: number, value: string) => {
-    if (value.length > 1) {
-      value = value.slice(-1);
-    }
-    if (!/^\d*$/.test(value)) return;
-
-    const newOtp = [...otp];
-    newOtp[index] = value;
-    setOtp(newOtp);
-
-    if (value !== "" && index < 5) {
-      inputRefs.current[index + 1]?.focus();
-    }
-  };
-
-  const handleKeyDown = (index: number, e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Backspace" && otp[index] === "" && index > 0) {
-      inputRefs.current[index - 1]?.focus();
-    }
-  };
-
-  const handleVerify = () => {
-    // Navigate to profile completion
-    router.push("/signup/profile");
-  };
+  const {
+    otp, timeRemaining, canResend, isProcessing, inputRefs,
+    handleChange, handleKeyDown, handleVerify, handleResend
+  } = useVerifyEmail();
 
   const formatTime = (seconds: number) => {
     const s = seconds < 10 ? `0${seconds}` : seconds;
@@ -64,7 +27,7 @@ export default function VerifyEmailPage() {
         ></div>
         <div className="absolute inset-0 bg-gradient-to-b from-[#fbf9f8]/40 via-[#fbf9f8]/20 to-[#fbf9f8]/60"></div>
       </div>
-      
+
       {/* Verification Card */}
       <div className="relative z-10 w-full max-w-[480px] px-margin-mobile md:px-0">
         <div className="bg-white/90 backdrop-blur-xl border border-outline-variant/30 p-8 md:p-12 rounded-xl shadow-2xl shadow-primary/5 text-center">
@@ -77,7 +40,7 @@ export default function VerifyEmailPage() {
               We've sent a 6-digit code to your email address. Please enter it below to continue.
             </p>
           </div>
-          
+
           {/* OTP Input Grid */}
           <div className="flex justify-between gap-2 md:gap-3 mb-10">
             {otp.map((digit, index) => (
@@ -96,15 +59,16 @@ export default function VerifyEmailPage() {
               />
             ))}
           </div>
-          
+
           {/* Action Button */}
           <button
             onClick={handleVerify}
-            className="w-full bg-primary text-on-primary py-4 rounded-lg font-label-md text-label-md uppercase tracking-widest hover:bg-[#858383] transition-colors duration-300 mb-8 active:scale-[0.98]"
+            disabled={isProcessing}
+            className="w-full bg-primary text-on-primary py-4 rounded-lg font-label-md text-label-md uppercase tracking-widest hover:bg-[#858383] transition-colors duration-300 mb-8 active:scale-[0.98] disabled:bg-gray-400"
           >
-            Verify & Continue
+            {isProcessing ? "Verifying..." : "Verify & Continue"}
           </button>
-          
+
           {/* Resend Link & Timer */}
           <div className="space-y-4">
             <p className="font-label-md text-label-md text-on-surface-variant">
@@ -116,11 +80,7 @@ export default function VerifyEmailPage() {
               ) : (
                 <button
                   className="text-secondary font-bold hover:underline"
-                  onClick={() => {
-                    setTimeRemaining(59);
-                    setCanResend(false);
-                    setOtp(["", "", "", "", "", ""]);
-                  }}
+                  onClick={handleResend}
                 >
                   Resend Code
                 </button>

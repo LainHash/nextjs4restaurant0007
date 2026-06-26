@@ -6,7 +6,7 @@ export default function Page() {
             <main className="pt-24">
                 {/* Hero Section */}
                 <section className="relative w-full h-[819px] md:h-[921px] flex items-center justify-center overflow-hidden">
-                    <div className="absolute inset-0 z-0" data-alt="A breathtaking, wide-angle shot of an exquisitely plated fine dining dish in a minimalist, dimly lit restaurant setting. Soft, warm ambient light highlights the delicate textures of the food, set against a dark charcoal table. The overall aesthetic is quiet luxury, emphasizing sophisticated culinary artistry and elegant atmosphere." style={{ backgroundImage: "url('https" }}></div>
+                    <div className="absolute inset-0 z-0" data-alt="A breathtaking, wide-angle shot of an exquisitely plated fine dining dish in a minimalist, dimly lit restaurant setting. Soft, warm ambient light highlights the delicate textures of the food, set against a dark charcoal table. The overall aesthetic is quiet luxury, emphasizing sophisticated culinary artistry and elegant atmosphere." style={{ backgroundImage: "url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2070&auto=format&fit=crop')" }}></div>
                     <div className="absolute inset-0 z-0 bg-primary/40 backdrop-blur-[2px]"></div>
                     <div className="relative z-10 text-center px-margin-mobile flex flex-col items-center">
                         <h1 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-primary mb-6 max-w-4xl text-balance">

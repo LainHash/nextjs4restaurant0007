@@ -2,9 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useAuth } from "../../contexts/AuthContext";
 
 const Navbar = () => {
     const pathname = usePathname();
+    const { isAuthenticated, logout } = useAuth();
 
     const links = [
         { href: "/", label: "Home" },
@@ -35,9 +37,27 @@ const Navbar = () => {
                         );
                     })}
                 </div>
-                <Link href="/book" className="bg-primary text-on-primary font-label-md text-label-md px-6 py-2 rounded border border-primary hover:bg-surface hover:text-primary transition-colors duration-300 hidden md:block">
-                    Book a Table
-                </Link>
+                <div className="hidden md:flex items-center gap-4">
+                    {isAuthenticated ? (
+                        <>
+                            <button onClick={logout} className="text-on-surface-variant hover:text-secondary transition-colors font-label-md text-label-md">
+                                Logout
+                            </button>
+                            <Link href="/book" className="bg-primary text-on-primary font-label-md text-label-md px-6 py-2 rounded border border-primary hover:bg-surface hover:text-primary transition-colors duration-300">
+                                Book a Table
+                            </Link>
+                        </>
+                    ) : (
+                        <>
+                            <Link href="/login" className="text-on-surface-variant hover:text-secondary transition-colors font-label-md text-label-md px-2">
+                                Login
+                            </Link>
+                            <Link href="/signup" className="bg-primary text-on-primary font-label-md text-label-md px-6 py-2 rounded border border-primary hover:bg-surface hover:text-primary transition-colors duration-300">
+                                Sign Up
+                            </Link>
+                        </>
+                    )}
+                </div>
                 <button className="md:hidden text-primary focus:outline-none p-2">
                     <span className="material-symbols-outlined">menu</span>
                 </button>
