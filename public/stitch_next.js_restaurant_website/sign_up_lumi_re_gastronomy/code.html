@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Register | LUMIÈRE</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&amp;family=Hanken+Grotesk:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline": "#747878",
+                    "surface-bright": "#fbf9f8",
+                    "on-surface": "#1b1c1c",
+                    "error": "#ba1a1a",
+                    "surface-dim": "#dbd9d9",
+                    "secondary": "#775a19",
+                    "tertiary": "#000000",
+                    "on-tertiary-container": "#848480",
+                    "surface-variant": "#e4e2e2",
+                    "surface-container-low": "#f5f3f3",
+                    "surface-container-high": "#eae8e7",
+                    "on-secondary-fixed": "#261900",
+                    "on-primary-fixed-variant": "#474746",
+                    "on-background": "#1b1c1c",
+                    "tertiary-container": "#1b1c19",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-on-surface": "#f2f0f0",
+                    "surface-container": "#efeded",
+                    "surface": "#fbf9f8",
+                    "secondary-fixed-dim": "#e9c176",
+                    "surface-tint": "#5f5e5e",
+                    "primary-container": "#1c1b1b",
+                    "on-tertiary-fixed": "#1b1c19",
+                    "inverse-surface": "#303030",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#e4e2dd",
+                    "outline-variant": "#c4c7c7",
+                    "background": "#fbf9f8",
+                    "primary": "#000000",
+                    "surface-container-highest": "#e4e2e2",
+                    "on-primary-fixed": "#1c1b1b",
+                    "primary-fixed-dim": "#c8c6c5",
+                    "on-primary-container": "#858383",
+                    "tertiary-fixed-dim": "#c8c6c2",
+                    "secondary-container": "#fed488",
+                    "secondary-fixed": "#ffdea5",
+                    "on-secondary-container": "#785a1a",
+                    "on-primary": "#ffffff",
+                    "on-surface-variant": "#444748",
+                    "on-secondary-fixed-variant": "#5d4201",
+                    "on-error-container": "#93000a",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed-variant": "#474744",
+                    "on-tertiary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#c8c6c5",
+                    "primary-fixed": "#e5e2e1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "container-max": "1280px",
+                    "gutter": "24px",
+                    "base": "8px",
+                    "margin-desktop": "64px",
+                    "section-gap": "120px"
+            },
+            "fontFamily": {
+                    "label-md": ["Hanken Grotesk"],
+                    "headline-sm": ["Libre Caslon Text"],
+                    "headline-md": ["Libre Caslon Text"],
+                    "label-sm": ["Hanken Grotesk"],
+                    "display-lg": ["Libre Caslon Text"],
+                    "display-lg-mobile": ["Libre Caslon Text"],
+                    "body-md": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "400"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                    "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .glass-panel {
+            background: rgba(251, 249, 248, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .form-input-focus:focus {
+            border-bottom-color: #775a19;
+            outline: none;
+        }
+        @keyframes subtleZoom {
+            from { transform: scale(1.05); }
+            to { transform: scale(1); }
+        }
+        .animate-subtle-zoom {
+            animation: subtleZoom 10s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-secondary/30">
+<!-- TopAppBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
+<a class="font-headline-md text-headline-md text-primary tracking-tighter" href="#">LUMIÈRE</a>
+<div class="hidden md:flex items-center space-x-8">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-300" href="#">Home</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-300" href="#">Menu</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-300" href="#">About</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-300" href="#">Contact</a>
+</div>
+<div class="flex items-center space-x-6">
+<button class="bg-primary text-on-primary px-6 py-2 rounded-none font-label-md text-label-md hover:opacity-90 transition-all uppercase tracking-widest">
+                    Book a Table
+                </button>
+<button class="md:hidden">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="min-h-screen pt-20 flex flex-col items-center justify-center relative overflow-hidden">
+<!-- Background Image with Zoom -->
+<div class="absolute inset-0 z-0 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center animate-subtle-zoom" data-alt="An atmospheric, cinematic high-angle shot of a minimalist luxury restaurant interior at dusk. Warm golden ambient lighting illuminates soft grey marble textures and dark charcoal furniture. The mood is sophisticated and quiet, with out-of-focus crystal glassware creating delicate bokeh in the foreground. Professional architectural photography style, clean lines, and deep shadows." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCnk5jTnR6_YHqpJWko8_irr4y7GsbUpVtJ3i3UFWndt_rly4leoKsm-ROnoi2mJTnxes4ABMYOZnA8kBzreNDgnUPw3KTFvFsyerK90ttyTWSKlAT5fegVqGRyIegQ854cTlTJDxHgYr7wHw16h1TQxxXKa90gRPy-TGAJgO0C09LId1Fj-DHo4eh33igZBefFu8S3jVp9vuQwIAgXfeXr6_wY2A_xf1dQ47MaI3Icmk8BPRIU8EyvbklWqUp69ZB8iFrYNw26zWI')"></div>
+<div class="absolute inset-0 bg-black/20"></div>
+</div>
+<!-- Registration Container -->
+<section class="relative z-10 w-full max-w-xl px-margin-mobile my-12">
+<div class="glass-panel p-8 md:p-12 shadow-2xl border border-white/20">
+<div class="text-center mb-10">
+<h1 class="font-headline-md text-headline-md text-primary mb-2">Join LUMIÈRE</h1>
+<p class="font-body-md text-on-surface-variant">Begin your journey of culinary excellence</p>
+</div>
+<form class="space-y-6">
+<!-- Full Name -->
+<div class="relative group">
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase mb-1" for="full_name">FULL NAME</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 font-body-md text-body-md focus:ring-0 form-input-focus transition-all duration-300" id="full_name" placeholder="John Doe" required="" type="text"/>
+</div>
+<!-- Email -->
+<div class="relative group">
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase mb-1" for="email">Email</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 font-body-md text-body-md focus:ring-0 form-input-focus transition-all duration-300" id="email" placeholder="email@example.com" required="" type="email"/>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Password -->
+<div class="relative group">
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase mb-1" for="password">PASSWORD</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 font-body-md text-body-md focus:ring-0 form-input-focus transition-all duration-300" id="password" required="" type="password"/>
+</div>
+<!-- Confirm Password -->
+<div class="relative group">
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase mb-1" for="confirm_password">CONFIRM PASSWORD</label>
+<input class="w-full bg-transparent border-0 border-b border-outline-variant py-3 px-0 font-body-md text-body-md focus:ring-0 form-input-focus transition-all duration-300" id="confirm_password" required="" type="password"/>
+</div>
+</div>
+<!-- Terms & Conditions -->
+<div class="flex items-start space-x-3 pt-2">
+<div class="flex items-center h-5">
+<input class="w-4 h-4 text-secondary border-outline-variant rounded focus:ring-secondary/20" id="terms" required="" type="checkbox"/>
+</div>
+<label class="font-label-sm text-label-sm text-on-surface-variant leading-tight" for="terms">
+                            I agree to the <a class="text-secondary border-b border-secondary/30 hover:border-secondary transition-all" href="#">Terms &amp; Conditions</a> and Privacy Policy of Lumière.
+                        </label>
+</div>
+<!-- Primary Action -->
+<div class="pt-4">
+<button class="w-full bg-primary text-on-primary py-4 font-label-md text-label-md uppercase tracking-[0.2em] hover:bg-secondary transition-all duration-500 ease-in-out transform active:scale-[0.98]" type="submit">
+                            CREATE ACCOUNT
+                        </button>
+</div>
+</form>
+<div class="mt-10 pt-8 border-t border-outline-variant/30 text-center">
+<p class="font-body-md text-on-surface-variant mb-4">Already have an account?</p>
+<a class="font-label-md text-label-md text-secondary border border-secondary px-8 py-3 hover:bg-secondary hover:text-on-secondary transition-all duration-300 inline-block uppercase tracking-widest" href="#">
+                        LOG IN NOW
+                    </a>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop py-12 max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<h2 class="font-headline-sm text-headline-sm text-primary mb-6">LUMIÈRE</h2>
+<p class="font-label-md text-label-md text-on-surface-variant max-w-xs">Elevating culinary art through every detail and refined flavor.</p>
+</div>
+<div class="space-y-4">
+<h3 class="font-label-md text-label-md text-primary uppercase tracking-widest">EXPLORE</h3>
+<ul class="space-y-2">
+<li><a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-all" href="#">Location</a></li>
+<li><a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-all" href="#">Opening Hours</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h3 class="font-label-md text-label-md text-primary uppercase tracking-widest">CONNECT</h3>
+<ul class="space-y-2">
+<li><a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-all" href="#">Contact</a></li>
+<li><a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-all" href="#">Newsletter</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h3 class="font-label-md text-label-md text-primary uppercase tracking-widest">LEGAL</h3>
+<ul class="space-y-2">
+<li><a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-all" href="#">Terms</a></li>
+<li><a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-all" href="#">Privacy</a></li>
+</ul>
+</div>
+</div>
+<div class="px-margin-mobile md:px-margin-desktop py-6 border-t border-outline-variant/30 max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+<p class="font-label-sm text-label-sm text-on-surface-variant">© 2024 Lumière Gastronomy. All rights reserved.</p>
+<div class="flex space-x-6">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-secondary cursor-pointer">public</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-secondary cursor-pointer">chat_bubble</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-secondary cursor-pointer">mail</span>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions for form inputs
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                const label = input.parentElement.querySelector('label');
+                if (label) label.classList.add('text-secondary');
+            });
+            input.addEventListener('blur', () => {
+                if (input.value === '') {
+                    const label = input.parentElement.querySelector('label');
+                    if (label) label.classList.remove('text-secondary');
+                }
+            });
+        });
+
+        // Simple form validation visual feedback
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const password = document.getElementById('password').value;
+            const confirm = document.getElementById('confirm_password').value;
+            
+            if (password !== confirm) {
+                alert('Passwords do not match. Please check again.');
+                return;
+            }
+            
+            // Mock success state
+            const btn = e.target.querySelector('button');
+            btn.innerText = 'PROCESSING...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.innerText = 'ACCOUNT CREATED';
+                btn.classList.replace('bg-primary', 'bg-green-800');
+            }, 1500);
+        });
+    </script>
+</body></html>

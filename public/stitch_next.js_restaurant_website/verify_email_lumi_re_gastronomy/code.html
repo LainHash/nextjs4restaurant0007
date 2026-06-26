@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Verify Email - Lumière Gastronomy</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&amp;family=Hanken+Grotesk:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "primary": "#000000",
+                    "on-primary-container": "#858383",
+                    "on-tertiary-fixed-variant": "#474744",
+                    "outline-variant": "#c4c7c7",
+                    "secondary-fixed": "#ffdea5",
+                    "surface-container-high": "#eae8e7",
+                    "on-secondary-fixed-variant": "#5d4201",
+                    "inverse-on-surface": "#f2f0f0",
+                    "secondary-fixed-dim": "#e9c176",
+                    "surface-dim": "#dbd9d9",
+                    "on-secondary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "background": "#fbf9f8",
+                    "on-secondary-fixed": "#261900",
+                    "on-primary-fixed": "#1c1b1b",
+                    "inverse-surface": "#303030",
+                    "on-secondary-container": "#785a1a",
+                    "surface-variant": "#e4e2e2",
+                    "surface-container-low": "#f5f3f3",
+                    "on-surface": "#1b1c1c",
+                    "inverse-primary": "#c8c6c5",
+                    "primary-fixed": "#e5e2e1",
+                    "on-tertiary-fixed": "#1b1c19",
+                    "secondary-container": "#fed488",
+                    "tertiary": "#000000",
+                    "surface-container": "#efeded",
+                    "on-tertiary-container": "#848480",
+                    "error-container": "#ffdad6",
+                    "secondary": "#775a19",
+                    "on-primary-fixed-variant": "#474746",
+                    "surface-container-highest": "#e4e2e2",
+                    "surface": "#fbf9f8",
+                    "error": "#ba1a1a",
+                    "surface-bright": "#fbf9f8",
+                    "primary-fixed-dim": "#c8c6c5",
+                    "tertiary-fixed": "#e4e2dd",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#5f5e5e",
+                    "outline": "#747878",
+                    "tertiary-container": "#1b1c19",
+                    "on-tertiary": "#ffffff",
+                    "on-surface-variant": "#444748",
+                    "tertiary-fixed-dim": "#c8c6c2",
+                    "primary-container": "#1c1b1b",
+                    "on-background": "#1b1c1c",
+                    "surface-container-lowest": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "margin-desktop": "64px",
+                    "base": "8px",
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "section-gap": "120px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Hanken Grotesk"],
+                    "headline-md": ["Libre Caslon Text"],
+                    "headline-sm": ["Libre Caslon Text"],
+                    "display-lg-mobile": ["Libre Caslon Text"],
+                    "label-md": ["Hanken Grotesk"],
+                    "display-lg": ["Libre Caslon Text"],
+                    "body-md": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                    "headline-sm": ["24px", {"lineHeight": "32px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .otp-input:focus {
+            outline: none;
+            border-bottom: 2px solid #775a19;
+        }
+        body {
+            background-color: #fbf9f8;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-body-md text-on-surface">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30">
+<div class="flex justify-between items-center px-margin-desktop py-4 max-w-container-max mx-auto">
+<a class="font-headline-md text-headline-md text-primary tracking-tighter" href="#">LUMIÈRE</a>
+<nav class="hidden md:flex items-center space-x-8">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-300 ease-out" href="#">Home</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-300 ease-out" href="#">Menu</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-300 ease-out" href="#">About</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors duration-300 ease-out" href="#">Contact</a>
+</nav>
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-label-md text-label-md hover:opacity-80 active:scale-95 transition-all">
+                Book a Table
+            </button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex items-center justify-center relative pt-24 pb-section-gap">
+<!-- Blurred Background Image Container -->
+<div class="absolute inset-0 z-0 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center scale-110 blur-xl opacity-40" data-alt="A sophisticated, high-end restaurant interior captured with a shallow depth of field. The background shows warm, ambient lighting from crystal chandeliers reflecting off dark wood tables and plush velvet seating. The overall mood is luxurious, quiet, and exclusive, using a color palette of deep charcoal, cream, and hints of warm gold. The scene is heavily blurred to create a dreamlike, atmospheric backdrop." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA4q72jpW1ggpSVgYd26SjhGj5w_NX7k0f1CWUKnZh6ZkpFPzPYmcKRPvudZR5dvaPn2TJ6s-Mt7harLc2h_EdFOQl8r64sHItef4d8w9LSMOGEFfClkfnin1FBFfsh7jdu0cdkYpL2nWhPEXM2gnW5IihhcStVcBAmKsDWsvhqEB9Z_j21JE8gUU4gF8FlimJnNuLqRC7v3BJsrc5_H34ryH1J8Ihov3n_2rsynhich8lLa17fgiUAJyCJahC6j6--eUwLW8tjiIk')"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-background/40 via-background/20 to-background/60"></div>
+</div>
+<!-- Verification Card -->
+<div class="relative z-10 w-full max-w-[480px] px-margin-mobile md:px-0">
+<div class="bg-surface-container-lowest/90 backdrop-blur-xl border border-outline-variant/30 p-8 md:p-12 rounded-xl shadow-2xl shadow-primary/5 text-center">
+<div class="mb-8">
+<div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-secondary-container/20 text-secondary mb-6">
+<span class="material-symbols-outlined text-4xl">mark_email_read</span>
+</div>
+<h1 class="font-headline-md text-headline-md text-on-surface mb-3">Verify Your Email</h1>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                        We've sent a 6-digit code to your email address. Please enter it below to continue.
+                    </p>
+</div>
+<!-- OTP Input Grid -->
+<div class="flex justify-between gap-2 md:gap-3 mb-10" id="otp-container">
+<input class="otp-input w-full aspect-square text-center font-headline-sm text-headline-sm border-b-2 border-outline-variant bg-transparent transition-all" maxlength="1" pattern="\d*" type="text"/>
+<input class="otp-input w-full aspect-square text-center font-headline-sm text-headline-sm border-b-2 border-outline-variant bg-transparent transition-all" maxlength="1" pattern="\d*" type="text"/>
+<input class="otp-input w-full aspect-square text-center font-headline-sm text-headline-sm border-b-2 border-outline-variant bg-transparent transition-all" maxlength="1" pattern="\d*" type="text"/>
+<input class="otp-input w-full aspect-square text-center font-headline-sm text-headline-sm border-b-2 border-outline-variant bg-transparent transition-all" maxlength="1" pattern="\d*" type="text"/>
+<input class="otp-input w-full aspect-square text-center font-headline-sm text-headline-sm border-b-2 border-outline-variant bg-transparent transition-all" maxlength="1" pattern="\d*" type="text"/>
+<input class="otp-input w-full aspect-square text-center font-headline-sm text-headline-sm border-b-2 border-outline-variant bg-transparent transition-all" maxlength="1" pattern="\d*" type="text"/>
+</div>
+<!-- Action Button -->
+<button class="w-full bg-primary text-on-primary py-4 rounded-lg font-label-md text-label-md uppercase tracking-widest hover:bg-on-primary-container transition-colors duration-300 mb-8 active:scale-[0.98]">
+                    Verify &amp; Continue
+                </button>
+<!-- Resend Link & Timer -->
+<div class="space-y-4">
+<p class="font-label-md text-label-md text-on-surface-variant">
+                        Didn't receive the code? 
+                        <span class="text-secondary font-bold" id="timer-container">
+                            Resend in <span id="timer">0:59</span>
+</span>
+<button class="hidden text-secondary font-bold hover:underline" id="resend-btn">Resend Code</button>
+</p>
+<a class="inline-flex items-center text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-sm mr-2">arrow_back</span>
+                        Back to Login
+                    </a>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-section-gap max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<span class="font-headline-sm text-headline-sm text-primary">LUMIÈRE</span>
+<p class="mt-4 font-body-md text-on-surface-variant max-w-xs">
+                    Elevated gastronomy meets modern precision. An invitation to an unforgettable sensory journey.
+                </p>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-primary mb-6 uppercase tracking-widest">Discover</h4>
+<ul class="space-y-4">
+<li><a class="font-label-md text-on-surface-variant hover:text-secondary transition-all duration-300" href="#">Location</a></li>
+<li><a class="font-label-md text-on-surface-variant hover:text-secondary transition-all duration-300" href="#">Opening Hours</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-primary mb-6 uppercase tracking-widest">Connect</h4>
+<ul class="space-y-4">
+<li><a class="font-label-md text-on-surface-variant hover:text-secondary transition-all duration-300" href="#">Contact</a></li>
+<li><a class="font-label-md text-on-surface-variant hover:text-secondary transition-all duration-300" href="#">Newsletter</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-primary mb-6 uppercase tracking-widest">Experience</h4>
+<p class="font-body-md text-on-surface-variant mb-4">Subscribe to our cellar notes and seasonal updates.</p>
+<div class="flex border-b border-outline">
+<input class="bg-transparent border-none focus:ring-0 text-label-md w-full py-2" placeholder="Email Address" type="email"/>
+<button class="text-secondary hover:translate-x-1 transition-transform">
+<span class="material-symbols-outlined">east</span>
+</button>
+</div>
+</div>
+</div>
+<div class="px-margin-desktop py-8 border-t border-outline-variant/30 flex flex-col md:flex-row justify-between items-center gap-4 max-w-container-max mx-auto">
+<p class="font-label-sm text-label-sm text-on-surface-variant">© 2024 Lumière Gastronomy. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary" href="#">Terms of Service</a>
+</div>
+</div>
+</footer>
+<script>
+        // OTP Input Auto-focus and handling
+        const inputs = document.querySelectorAll('.otp-input');
+        
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                if (e.target.value.length === 1 && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+            });
+
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && !e.target.value && index > 0) {
+                    inputs[index - 1].focus();
+                }
+            });
+        });
+
+        // Simple Countdown Timer
+        let timeRemaining = 59;
+        const timerSpan = document.getElementById('timer');
+        const timerContainer = document.getElementById('timer-container');
+        const resendBtn = document.getElementById('resend-btn');
+
+        const countdown = setInterval(() => {
+            timeRemaining--;
+            const seconds = timeRemaining < 10 ? '0' + timeRemaining : timeRemaining;
+            timerSpan.textContent = `0:${seconds}`;
+
+            if (timeRemaining <= 0) {
+                clearInterval(countdown);
+                timerContainer.classList.add('hidden');
+                resendBtn.classList.remove('hidden');
+            }
+        }, 1000);
+
+        // Visual Interaction for active state logic
+        // Current screen is 'Verify Email', which is not in the TopNavBar links.
+        // Therefore, we keep navigation links in 'inactive' state as per design rules.
+    </script>
+</body></html>
