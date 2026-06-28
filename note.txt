@@ -1,0 +1,35 @@
+public class CreateReservationRequest
+{
+    public DateTime ReservationTime { get; set; }
+    public int NumberOfGuests { get; set; }
+    public string Status { get; set; } = string.Empty;
+    public string? Note { get; set; }
+
+    public string? GuestName { get; set; } = string.Empty;
+    public string? GuestEmail { get; set; } = string.Empty;
+    public string? GuestPhone { get; set; } = string.Empty;
+
+    public string? TableType { get; set; }
+}
+
+public class ReservationsController : ApiController
+{
+    [HttpPost]
+    public async Task<IActionResult> CreateAsync([FromBody] CreateReservationRequest request, CancellationToken cancellationToken)
+    {
+        Guid? userId = null; 
+
+        if (User.Identity?.IsAuthenticated == true)
+        {
+            var userIdString = User.FindFirst(ClaimTypes.NameIdentifier)?.Value
+                            ?? User.FindFirst(JwtRegisteredClaimNames.Sub)?.Value;
+            if (Guid.TryParse(userIdString, out Guid parsedId))
+            {
+                userId = parsedId; 
+            }
+        }
+
+        var result = await Sender.Send(new CreateReservationCommand(request, userId), cancellationToken);
+        return StatusCode(result.StatusCode, result);
+    }
+}
