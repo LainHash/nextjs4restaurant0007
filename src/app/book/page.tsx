@@ -1,8 +1,18 @@
-import Link from 'next/link';
-export default function Page() {
-  return (
-    <>
+'use client';
 
+import Link from 'next/link';
+import { useCreateReservation } from '../../hooks/production/reservations/useCreateReservation';
+
+export default function Page() {
+  const { form, isProcessing, onSubmit, isAuthenticated } = useCreateReservation();
+  const { register, watch } = form;
+  
+  const selectedDate = watch("ReservationDate");
+  const selectedTime = watch("ReservationTime");
+  const selectedGuests = watch("NumberOfGuests");
+
+  return (
+    <form onSubmit={onSubmit}>
       {/* Main Content Canvas */}
       <main className="flex-grow pt-[120px] pb-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full">
         {/* Page Header */}
@@ -24,12 +34,12 @@ export default function Page() {
                 {/* Date Input */}
                 <div className="flex flex-col">
                   <label className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-2">Select Date</label>
-                  <input className="w-full bg-transparent border-0 border-b border-outline-variant focus:border-secondary focus:ring-0 px-0 py-2 font-body-lg text-body-lg text-primary transition-colors cursor-pointer" type="date" defaultValue="2024-11-15" />
+                  <input {...register("ReservationDate")} className="w-full bg-transparent border-0 border-b border-outline-variant focus:border-secondary focus:ring-0 px-0 py-2 font-body-lg text-body-lg text-primary transition-colors cursor-pointer" type="date" />
                 </div>
                 {/* Time Input */}
                 <div className="flex flex-col">
                   <label className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-2">Select Time</label>
-                  <select className="w-full bg-transparent border-0 border-b border-outline-variant focus:border-secondary focus:ring-0 px-0 py-2 font-body-lg text-body-lg text-primary transition-colors cursor-pointer appearance-none" defaultValue="19:00">
+                  <select {...register("ReservationTime")} className="w-full bg-transparent border-0 border-b border-outline-variant focus:border-secondary focus:ring-0 px-0 py-2 font-body-lg text-body-lg text-primary transition-colors cursor-pointer appearance-none">
                     <option value="18:00">6:00 PM</option>
                     <option value="18:30">6:30 PM</option>
                     <option value="19:00">7:00 PM</option>
@@ -41,12 +51,29 @@ export default function Page() {
                 <div className="flex flex-col md:col-span-2 mt-2">
                   <label className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-4">Number of Guests</label>
                   <div className="flex gap-4 overflow-x-auto no-scrollbar pb-2">
-                    <button className="flex-shrink-0 w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center font-label-md text-label-md text-on-surface hover:border-secondary hover:text-secondary transition-colors">1</button>
-                    <button className="flex-shrink-0 w-12 h-12 rounded-full border border-secondary bg-secondary/10 flex items-center justify-center font-label-md text-label-md text-secondary transition-colors">2</button>
-                    <button className="flex-shrink-0 w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center font-label-md text-label-md text-on-surface hover:border-secondary hover:text-secondary transition-colors">3</button>
-                    <button className="flex-shrink-0 w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center font-label-md text-label-md text-on-surface hover:border-secondary hover:text-secondary transition-colors">4</button>
-                    <button className="flex-shrink-0 w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center font-label-md text-label-md text-on-surface hover:border-secondary hover:text-secondary transition-colors">5+</button>
+                    {[1, 2, 3, 4, 5, 6].map((num) => (
+                      <button 
+                        key={num}
+                        type="button"
+                        onClick={() => form.setValue("NumberOfGuests", num)}
+                        className={`flex-shrink-0 w-12 h-12 rounded-full border flex items-center justify-center font-label-md text-label-md transition-colors ${selectedGuests === num ? 'border-secondary bg-secondary/10 text-secondary' : 'border-outline-variant text-on-surface hover:border-secondary hover:text-secondary'}`}
+                      >
+                        {num}{num === 6 && '+'}
+                      </button>
+                    ))}
                   </div>
+                  {/* Hidden input to sync with react-hook-form */}
+                  <input type="hidden" {...register("NumberOfGuests")} />
+                </div>
+                {/* Table Type Input */}
+                <div className="flex flex-col md:col-span-2 mt-2">
+                  <label className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-2">Table Type (Optional)</label>
+                  <select {...register("TableType")} className="w-full bg-transparent border-0 border-b border-outline-variant focus:border-secondary focus:ring-0 px-0 py-2 font-body-lg text-body-lg text-primary transition-colors cursor-pointer appearance-none">
+                    <option value="">No Preference</option>
+                    <option value="Standard">Standard</option>
+                    <option value="Outdoor">Outdoor</option>
+                    <option value="Vip">Vip</option>
+                  </select>
                 </div>
               </div>
             </section>
@@ -67,13 +94,36 @@ export default function Page() {
                     <button className="px-4 py-2 rounded-full border border-outline-variant text-on-surface-variant font-label-md text-label-md hover:border-secondary hover:text-secondary transition-all">Nut Allergy</button>
                   </div>
                 </div>
-                {/* Occasion */}
+                {/* Note / Occasion */}
                 <div className="pt-4">
-                  <label className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-2 block">Occasion (Optional)</label>
-                  <input className="w-full bg-transparent border-0 border-b border-outline-variant focus:border-secondary focus:ring-0 px-0 py-2 font-body-md text-body-md text-primary placeholder-outline-variant transition-colors" placeholder="e.g., Anniversary, Birthday" type="text" />
+                  <label className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-2 block">Note / Occasion (Optional)</label>
+                  <input {...register("Note")} className="w-full bg-transparent border-0 border-b border-outline-variant focus:border-secondary focus:ring-0 px-0 py-2 font-body-md text-body-md text-primary placeholder-outline-variant transition-colors" placeholder="e.g., Anniversary, Birthday, or any special requests" type="text" />
                 </div>
               </div>
             </section>
+            {/* Step 3: Contact Details */}
+            {!isAuthenticated && (
+              <section className="bg-surface-container-lowest p-8 border border-outline-variant/50 rounded-lg">
+                <h2 className="font-headline-sm text-headline-sm text-primary mb-6 flex items-center gap-2">
+                  <span className="material-symbols-outlined text-secondary">person</span>
+                  Contact Details
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="flex flex-col">
+                    <label className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-2">Guest Name</label>
+                    <input {...register("GuestName")} className="w-full bg-transparent border-0 border-b border-outline-variant focus:border-secondary focus:ring-0 px-0 py-2 font-body-md text-body-md text-primary placeholder-outline-variant transition-colors" placeholder="e.g., John Doe" type="text" />
+                  </div>
+                  <div className="flex flex-col">
+                    <label className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-2">Guest Email</label>
+                    <input {...register("GuestEmail")} className="w-full bg-transparent border-0 border-b border-outline-variant focus:border-secondary focus:ring-0 px-0 py-2 font-body-md text-body-md text-primary placeholder-outline-variant transition-colors" placeholder="e.g., john@example.com" type="email" />
+                  </div>
+                  <div className="flex flex-col md:col-span-2">
+                    <label className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-2">Guest Phone</label>
+                    <input {...register("GuestPhone")} className="w-full bg-transparent border-0 border-b border-outline-variant focus:border-secondary focus:ring-0 px-0 py-2 font-body-md text-body-md text-primary placeholder-outline-variant transition-colors" placeholder="e.g., +1 234 567 8900" type="tel" />
+                  </div>
+                </div>
+              </section>
+            )}
           </div>
           {/* Right Column: Visuals & Confirmation */}
           <div className="lg:col-span-5 flex flex-col gap-8">
@@ -92,25 +142,28 @@ export default function Page() {
               <ul className="space-y-4 font-body-md text-body-md text-on-surface">
                 <li className="flex justify-between">
                   <span className="text-on-surface-variant">Date</span>
-                  <span className="font-semibold text-primary">Nov 15, 2024</span>
+                  <span className="font-semibold text-primary">{selectedDate || "Not selected"}</span>
                 </li>
                 <li className="flex justify-between">
                   <span className="text-on-surface-variant">Time</span>
-                  <span className="font-semibold text-primary">7:00 PM</span>
+                  <span className="font-semibold text-primary">{selectedTime || "Not selected"}</span>
                 </li>
                 <li className="flex justify-between">
                   <span className="text-on-surface-variant">Guests</span>
-                  <span className="font-semibold text-primary">2 People</span>
+                  <span className="font-semibold text-primary">{selectedGuests} People</span>
                 </li>
               </ul>
-              <button className="mt-8 w-full bg-primary text-on-primary rounded font-label-md text-label-md py-4 hover:opacity-90 hover:scale-[0.99] transition-all duration-300 ease-out shadow-lg">
-                Confirm &amp; Book
+              <button 
+                type="submit" 
+                disabled={isProcessing}
+                className="mt-8 w-full bg-primary text-on-primary rounded font-label-md text-label-md py-4 hover:opacity-90 hover:scale-[0.99] transition-all duration-300 ease-out shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isProcessing ? "Processing..." : "Confirm & Book"}
               </button>
             </div>
           </div>
         </div>
       </main>
-
-    </>
+    </form>
   );
 }
